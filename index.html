@@ -1640,9 +1640,17 @@
       z-index: 1;
     }
 
-    .coming-soon-hero-icon-wrap {
+    .coming-soon-header-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 0 auto 24px auto;
       position: relative;
-      margin: 0 auto 26px auto;
+    }
+
+    .cs-icon-card {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1650,23 +1658,23 @@
 
     .bolt-glow-aura {
       position: absolute;
-      width: 190px;
-      height: 190px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 240, 255, 0.4) 0%, rgba(59, 130, 246, 0.25) 45%, transparent 70%);
-      filter: blur(24px);
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.45) 0%, rgba(59, 130, 246, 0.25) 45%, transparent 70%);
+      filter: blur(20px);
       pointer-events: none;
       animation: pulseGlow 3s infinite ease-in-out;
       z-index: 0;
     }
 
     .bolt-icon-box {
-      width: 88px;
-      height: 88px;
-      border-radius: 22px;
-      background: linear-gradient(145deg, rgba(17, 28, 48, 0.9), rgba(8, 14, 25, 0.95));
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(17, 28, 48, 0.92), rgba(8, 14, 25, 0.96));
       border: 1px solid rgba(56, 189, 248, 0.45);
-      box-shadow: 0 0 35px rgba(56, 189, 248, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1682,39 +1690,53 @@
         transform: translateY(0);
       }
       50% {
-        transform: translateY(-7px);
+        transform: translateY(-6px);
       }
     }
 
     .coming-soon-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--accent-cyan);
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: rgba(0, 240, 255, 0.05);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 30px;
-      padding: 6px 16px;
-      margin-bottom: 18px;
+      padding: 10px 22px;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .coming-soon-eyebrow:hover {
+      border-color: rgba(0, 240, 255, 0.6);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
     }
 
     .eyebrow-pulse {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: var(--neon-cyan);
-      box-shadow: 0 0 8px var(--neon-cyan);
+      background: #00f0ff;
+      box-shadow: 0 0 10px #00f0ff;
       animation: pulseGlow 1.5s infinite;
+      flex-shrink: 0;
+    }
+
+    .eyebrow-text {
+      line-height: 1;
+      letter-spacing: 2px;
     }
 
     .coming-soon-title {
       font-family: var(--font-display);
-      font-size: clamp(40px, 6.5vw, 68px);
+      font-size: clamp(34px, 6.5vw, 68px);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.08;
@@ -2034,6 +2056,25 @@
         padding-top: 100px;
         padding-bottom: 60px;
       }
+      .coming-soon-header-wrap {
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .bolt-icon-box {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+      }
+      .bolt-icon-box svg {
+        width: 32px;
+        height: 32px;
+      }
+      .coming-soon-eyebrow {
+        font-size: 10.5px;
+        padding: 7px 12px;
+        letter-spacing: 1.2px;
+        white-space: nowrap;
+      }
       .countdown-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -2122,13 +2163,13 @@
   <!-- 1. GLOBAL NAVBAR -->
   <header class="navbar" id="navbar">
     <div class="container nav-container">
-      <a href="#hero" class="nav-brand" aria-label="Aerivex Home">
+      <a href="#hero" class="nav-brand" aria-label="Aerivex Downloader Home">
         <div class="brand-icon">
           <svg viewBox="0 0 24 24">
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
           </svg>
         </div>
-        <span>Aerivex</span>
+        <span>Aerivex Downloader</span>
       </a>
 
       <!-- Center Nav Links -->
@@ -2166,7 +2207,7 @@
       <div class="brand-icon">
         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
       </div>
-      <span>Aerivex</span>
+      <span>Aerivex Downloader</span>
     </a>
     <ul class="mobile-nav-links">
       <li><a href="#coming-soon" class="mobile-nav-link">Coming Soon</a></li>
@@ -2185,50 +2226,53 @@
     <!-- SCREEN 0: COMING SOON COUNTDOWN SCREEN -->
     <section class="coming-soon-section" id="coming-soon">
       <div class="container">
-        <!-- Hero Centered Graphic: 3D Electric Blue Glowing Lightning Bolt -->
-        <div class="coming-soon-hero-icon-wrap">
-          <div class="bolt-glow-aura"></div>
-          <div class="bolt-icon-box">
-            <svg viewBox="0 0 64 64" width="54" height="54" class="bolt-svg-3d" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="boltGrad3D" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#00f0ff" />
-                  <stop offset="45%" stop-color="#38BDF8" />
-                  <stop offset="100%" stop-color="#0284C7" />
-                </linearGradient>
-                <linearGradient id="boltRimHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
-                  <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.6" />
-                  <stop offset="100%" stop-color="#0284C7" stop-opacity="0.1" />
-                </linearGradient>
-                <filter id="boltNeonGlow" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-              <!-- 3D Depth Shadow -->
-              <path d="M35 4L13 36h18l-5 24 25-32H33l6-24z" fill="#0369A1" opacity="0.6" transform="translate(2, 3)" />
-              <!-- Main Glowing Lightning Bolt -->
-              <path d="M35 4L13 36h18l-5 24 25-32H33l6-24z" fill="url(#boltGrad3D)" filter="url(#boltNeonGlow)" />
-              <!-- Bevel / Rim Light Highlight -->
-              <path d="M35 4L13 36h18l-5 24 25-32H33l6-24z" stroke="url(#boltRimHighlight)" stroke-width="1.5" fill="none" />
-            </svg>
+        <!-- Hero Header: Rounded-Square Glassmorphic Icon Card + Aligned Capsule Pill Tag -->
+        <div class="coming-soon-header-wrap">
+          <div class="cs-icon-card">
+            <div class="bolt-glow-aura"></div>
+            <div class="bolt-icon-box">
+              <svg viewBox="0 0 64 64" width="42" height="42" class="bolt-svg-3d" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="boltGrad3D" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00f0ff" />
+                    <stop offset="45%" stop-color="#38BDF8" />
+                    <stop offset="100%" stop-color="#0284C7" />
+                  </linearGradient>
+                  <linearGradient id="boltRimHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+                    <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.6" />
+                    <stop offset="100%" stop-color="#0284C7" stop-opacity="0.1" />
+                  </linearGradient>
+                  <filter id="boltNeonGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <!-- 3D Depth Shadow -->
+                <path d="M35 4L13 36h18l-5 24 25-32H33l6-24z" fill="#0369A1" opacity="0.6" transform="translate(1.5, 2.5)" />
+                <!-- Main Glowing Lightning Bolt -->
+                <path d="M35 4L13 36h18l-5 24 25-32H33l6-24z" fill="url(#boltGrad3D)" filter="url(#boltNeonGlow)" />
+                <!-- Bevel / Rim Light Highlight -->
+                <path d="M35 4L13 36h18l-5 24 25-32H33l6-24z" stroke="url(#boltRimHighlight)" stroke-width="1.5" fill="none" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="coming-soon-eyebrow">
+            <span class="eyebrow-pulse"></span>
+            <span class="eyebrow-text">THE FUTURE OF DOWNLOADING</span>
           </div>
         </div>
-
-        <!-- Headline Stack -->
-        <div class="coming-soon-eyebrow">
-          <span class="eyebrow-pulse"></span>
-          THE FUTURE OF DOWNLOADING
-        </div>
         
+        <!-- Main Headline -->
         <h1 class="coming-soon-title">COMING SOON</h1>
         
+        <!-- Description -->
         <p class="coming-soon-desc">
-          Aerivex is under construction. We're building something powerful that will change the way you download forever.
+          Aerivex Downloader is under construction. We're building something powerful that will change the way you download forever.
         </p>
 
         <!-- Live Countdown Timer Grid -->
@@ -2902,7 +2946,7 @@
           <div class="brand-icon" style="width: 26px; height: 26px;">
             <svg viewBox="0 0 24 24" style="width: 14px; height: 14px;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
           </div>
-          <span>Aerivex</span>
+          <span>Aerivex Downloader</span>
         </a>
 
         <ul class="footer-links">
@@ -2916,7 +2960,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Aerivex. All rights reserved. • <span style="color: var(--accent-cyan);">aerivexdownloader.com</span></p>
+        <p>© 2026 Aerivex Downloader. All rights reserved. • <span style="color: var(--accent-cyan);">aerivexdownloader.com</span></p>
       </div>
     </div>
   </footer>
