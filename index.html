@@ -1736,11 +1736,11 @@
 
     .coming-soon-brand-title {
       font-family: var(--font-display);
-      font-size: clamp(20px, 3vw, 28px);
+      font-size: clamp(22px, 3.5vw, 32px);
       font-weight: 700;
       color: #38BDF8;
       letter-spacing: -0.01em;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       text-shadow: 0 0 20px rgba(56, 189, 248, 0.45);
       line-height: 1.2;
     }
@@ -2241,47 +2241,6 @@
     <!-- SCREEN 0: COMING SOON COUNTDOWN SCREEN -->
     <section class="coming-soon-section" id="coming-soon">
       <div class="container">
-        <!-- Hero Header: Rounded-Square Glassmorphic Icon Card + Aligned Capsule Pill Tag -->
-        <div class="coming-soon-header-wrap">
-          <div class="cs-icon-card">
-            <div class="bolt-glow-aura"></div>
-            <div class="bolt-icon-box">
-              <svg viewBox="0 0 64 64" width="42" height="42" class="bolt-svg-3d" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="boltGrad3D" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#00f0ff" />
-                    <stop offset="45%" stop-color="#38BDF8" />
-                    <stop offset="100%" stop-color="#0284C7" />
-                  </linearGradient>
-                  <linearGradient id="boltRimHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
-                    <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.6" />
-                    <stop offset="100%" stop-color="#0284C7" stop-opacity="0.1" />
-                  </linearGradient>
-                  <filter id="boltNeonGlow" x="-30%" y="-30%" width="160%" height="160%">
-                    <feGaussianBlur stdDeviation="3.5" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-                <!-- 3D Depth Shadow -->
-                <path d="M35 4L13 36h18l-5 24 25-32H33l6-24z" fill="#0369A1" opacity="0.6" transform="translate(1.5, 2.5)" />
-                <!-- Main Glowing Lightning Bolt -->
-                <path d="M35 4L13 36h18l-5 24 25-32H33l6-24z" fill="url(#boltGrad3D)" filter="url(#boltNeonGlow)" />
-                <!-- Bevel / Rim Light Highlight -->
-                <path d="M35 4L13 36h18l-5 24 25-32H33l6-24z" stroke="url(#boltRimHighlight)" stroke-width="1.5" fill="none" />
-              </svg>
-            </div>
-          </div>
-
-          <div class="coming-soon-eyebrow">
-            <span class="eyebrow-pulse"></span>
-            <span class="eyebrow-text">THE FUTURE OF DOWNLOADING</span>
-          </div>
-        </div>
-        
         <!-- Brand Title -->
         <div class="coming-soon-brand-title">Aerivex Downloader</div>
 
