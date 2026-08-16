@@ -1640,100 +1640,6 @@
       z-index: 1;
     }
 
-    .coming-soon-header-wrap {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin: 0 auto 24px auto;
-      position: relative;
-    }
-
-    .cs-icon-card {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .bolt-glow-aura {
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 240, 255, 0.45) 0%, rgba(59, 130, 246, 0.25) 45%, transparent 70%);
-      filter: blur(20px);
-      pointer-events: none;
-      animation: pulseGlow 3s infinite ease-in-out;
-      z-index: 0;
-    }
-
-    .bolt-icon-box {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
-      background: linear-gradient(145deg, rgba(17, 28, 48, 0.92), rgba(8, 14, 25, 0.96));
-      border: 1px solid rgba(56, 189, 248, 0.45);
-      box-shadow: 0 0 30px rgba(56, 189, 248, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-      animation: floatBolt 4s infinite ease-in-out;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    @keyframes floatBolt {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-6px);
-      }
-    }
-
-    .coming-soon-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent-cyan);
-      background: rgba(0, 240, 255, 0.05);
-      border: 1px solid rgba(0, 240, 255, 0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 30px;
-      padding: 10px 22px;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .coming-soon-eyebrow:hover {
-      border-color: rgba(0, 240, 255, 0.6);
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
-    }
-
-    .eyebrow-pulse {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #00f0ff;
-      box-shadow: 0 0 10px #00f0ff;
-      animation: pulseGlow 1.5s infinite;
-      flex-shrink: 0;
-    }
-
-    .eyebrow-text {
-      line-height: 1;
-      letter-spacing: 2px;
-    }
-
     .coming-soon-brand-title {
       font-family: var(--font-display);
       font-size: clamp(22px, 3.5vw, 32px);
@@ -2066,25 +1972,6 @@
       .coming-soon-section {
         padding-top: 100px;
         padding-bottom: 60px;
-      }
-      .coming-soon-header-wrap {
-        gap: 10px;
-        margin-bottom: 18px;
-      }
-      .bolt-icon-box {
-        width: 52px;
-        height: 52px;
-        border-radius: 14px;
-      }
-      .bolt-icon-box svg {
-        width: 32px;
-        height: 32px;
-      }
-      .coming-soon-eyebrow {
-        font-size: 10.5px;
-        padding: 7px 12px;
-        letter-spacing: 1.2px;
-        white-space: nowrap;
       }
       .coming-soon-brand-title {
         font-size: 19px;
