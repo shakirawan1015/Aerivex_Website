@@ -75,7 +75,7 @@
        1. CSS RESET & DESIGN SYSTEM TOKENS
        ========================================================================== */
     :root {
-      --bg-void: #06090F;
+      --bg-void: #030712;
       --bg-surface: #0B111E;
       --bg-surface-1: #0B111E;
       --bg-surface-2: #111C30;
@@ -92,6 +92,8 @@
       --accent-emerald: #10B981;
       --accent-amber: #F59E0B;
       --accent-rose: #F43F5E;
+      --accent-violet: #8B5CF6;
+      --accent-fuchsia: #D946EF;
       
       --text-primary: #F8FAFC;
       --text-secondary: #94A3B8;
@@ -103,14 +105,19 @@
       --font-mono: 'JetBrains Mono', monospace;
       
       --glass-bg: rgba(11, 17, 30, 0.75);
-      --glass-blur: blur(16px);
-      --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+      --glass-blur: blur(20px);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.1);
       
       --glow-cyan-sm: 0 0 15px rgba(56, 189, 248, 0.25);
       --glow-cyan-lg: 0 0 35px rgba(14, 165, 233, 0.35);
       --glow-blue-cta: 0 4px 25px rgba(2, 132, 199, 0.45);
-      --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
-      --inner-rim-light: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+      --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
+      --inner-rim-light: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+      
+      /* Animation timing */
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
     }
 
     *, *::before, *::after {
@@ -136,20 +143,22 @@
       position: relative;
     }
 
-    /* Scrollbar */
+    /* Scrollbar - Modern sleek design */
     ::-webkit-scrollbar {
-      width: 10px;
+      width: 12px;
     }
     ::-webkit-scrollbar-track {
-      background: #06090F;
+      background: #030712;
     }
     ::-webkit-scrollbar-thumb {
-      background: #1E293B;
-      border-radius: 5px;
-      border: 2px solid #06090F;
+      background: linear-gradient(180deg, #1E293B 0%, #0284C7 100%);
+      border-radius: 6px;
+      border: 2px solid #030712;
+      transition: background 0.3s ease;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #0284C7;
+      background: linear-gradient(180deg, #38BDF8 0%, #0EA5E9 100%);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
     }
 
     /* Typography & Utilities */
@@ -157,11 +166,17 @@
       font-weight: 700;
       letter-spacing: -0.025em;
       color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    p {
+      line-height: 1.7;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
     button {
@@ -170,6 +185,7 @@
       border: none;
       background: none;
       outline: none;
+      transition: all 0.25s var(--ease-out-expo);
     }
 
     .container {
@@ -179,6 +195,26 @@
       margin-right: auto;
       padding-left: 24px;
       padding-right: 24px;
+    }
+
+    /* Smooth reveal animations */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    }
+    
+    .reveal-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Gradient text utility */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--neon-blue) 50%, var(--accent-violet) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     /* ==========================================================================
@@ -211,6 +247,7 @@
       pointer-events: none;
       opacity: 0.15;
       z-index: 0;
+      animation: float 20s ease-in-out infinite;
     }
     .glow-1 {
       top: 50px;
@@ -218,16 +255,34 @@
       transform: translateX(-50%);
       background: radial-gradient(circle, #0284C7 0%, #38BDF8 40%, transparent 70%);
       opacity: 0.22;
+      animation-delay: 0s;
     }
     .glow-2 {
       top: 1400px;
       right: -100px;
       background: radial-gradient(circle, #0369A1 0%, transparent 70%);
+      animation-delay: -7s;
     }
     .glow-3 {
       top: 2400px;
       left: -100px;
       background: radial-gradient(circle, #0284C7 0%, transparent 70%);
+      animation-delay: -14s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      25% {
+        transform: translate(30px, -30px) scale(1.05);
+      }
+      50% {
+        transform: translate(-20px, 20px) scale(0.95);
+      }
+      75% {
+        transform: translate(20px, 30px) scale(1.02);
+      }
     }
 
     /* ==========================================================================
@@ -239,18 +294,18 @@
       left: 0;
       width: 100%;
       z-index: 100;
-      transition: all 0.3s ease;
+      transition: all 0.4s var(--ease-out-expo);
       background: transparent;
       padding: 18px 0;
     }
 
     .navbar.scrolled {
       background: rgba(11, 17, 30, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding: 12px 0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
 
     .nav-container {
@@ -267,6 +322,11 @@
       font-weight: 700;
       color: #FFFFFF;
       letter-spacing: -0.02em;
+      transition: transform 0.3s var(--ease-out-back);
+    }
+
+    .nav-brand:hover {
+      transform: scale(1.03);
     }
 
     .brand-icon {
@@ -277,7 +337,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+      transition: all 0.3s var(--ease-out-back);
+    }
+
+    .nav-brand:hover .brand-icon {
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.8), 0 0 60px rgba(2, 132, 199, 0.4);
+      transform: rotate(-5deg) scale(1.05);
     }
 
     .brand-icon svg {
@@ -297,13 +363,14 @@
       font-size: 15px;
       font-weight: 500;
       color: var(--text-secondary);
-      transition: all 0.2s ease;
+      transition: all 0.3s var(--ease-out-expo);
       position: relative;
       padding: 6px 0;
     }
 
     .nav-link:hover, .nav-link.active {
       color: #FFFFFF;
+      text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
     }
 
     .nav-link::after {
@@ -313,9 +380,9 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--accent-cyan);
-      box-shadow: 0 0 8px var(--accent-cyan);
-      transition: width 0.25s ease;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--neon-blue));
+      box-shadow: 0 0 12px var(--accent-cyan);
+      transition: width 0.4s var(--ease-out-expo);
       border-radius: 2px;
     }
 
@@ -330,23 +397,40 @@
     }
 
     .btn-get-started {
-      background: #0284C7;
+      background: linear-gradient(135deg, #0284C7 0%, #0EA5E9 100%);
       color: #FFFFFF;
       font-size: 14px;
       font-weight: 600;
-      padding: 9px 22px;
+      padding: 10px 24px;
       border-radius: 9999px;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.3);
+      transition: all 0.35s var(--ease-out-back);
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-get-started::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-get-started:hover::before {
+      left: 100%;
     }
 
     .btn-get-started:hover {
-      background: #0369A1;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%);
+      box-shadow: 0 6px 25px rgba(56, 189, 248, 0.6), 0 0 40px rgba(2, 132, 199, 0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+      transform: translateY(-2px) scale(1.03);
     }
 
     .mobile-menu-btn {
@@ -419,6 +503,112 @@
        4. SCREEN 1: HERO & PRODUCT SHOWCASE
        ========================================================================== */
     .hero-section {
+      position: relative;
+      padding-top: 80px;
+      padding-bottom: 100px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .hero-header {
+      max-width: 900px;
+      margin: 0 auto 50px auto;
+    }
+
+    .hero-title {
+      font-size: clamp(42px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      letter-spacing: -0.04em;
+      text-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
+      animation: heroFadeIn 1s var(--ease-out-expo) both;
+    }
+
+    @keyframes heroFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      font-weight: 400;
+      max-width: 720px;
+      margin: 0 auto;
+      animation: heroFadeIn 1s var(--ease-out-expo) 0.2s both;
+    }
+
+    /* Laptop Mockup Component */
+    .mockup-wrapper {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      perspective: 1500px;
+      position: relative;
+      animation: mockupFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes mockupFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .mockup-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -20%);
+      width: 80%;
+      height: 70%;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.3) 0%, rgba(56, 189, 248, 0.15) 50%, transparent 75%);
+      filter: blur(60px);
+      z-index: -1;
+      pointer-events: none;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.5;
+        transform: translate(-50%, -20%) scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: translate(-50%, -20%) scale(1.05);
+      }
+    }
+
+    .laptop-container {
+      width: 100%;
+      transition: transform 0.3s var(--ease-out-expo);
+      transform-style: preserve-3d;
+    }
+
+    .mockup-wrapper:hover .laptop-container {
+      transform: rotateX(2deg) scale(1.02);
+    }
+
+    .laptop-screen {
+      background: #0B111E;
+      border: 10px solid #1E293B;
+      border-bottom: 14px solid #1E293B;
+      border-radius: 14px 14px 0 0;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(56, 189, 248, 0.2), inset 0 0 0 1px rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
       position: relative;
       padding-top: 60px;
       padding-bottom: 90px;
@@ -3670,11 +3860,34 @@
     });
 
     // ==========================================================================
-    // 11. INITIALIZATION ON DOM READY
+    // 11. SCROLL REVEAL ANIMATION SYSTEM
+    // ==========================================================================
+    function initScrollReveal() {
+      const revealElements = document.querySelectorAll('.reveal-on-scroll');
+      
+      if (revealElements.length === 0) return;
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+    }
+
+    // ==========================================================================
+    // 12. INITIALIZATION ON DOM READY
     // ==========================================================================
     document.addEventListener('DOMContentLoaded', () => {
       fetchLatestRelease();
       checkUrlParameters();
+      initScrollReveal();
     });
 
     // Run release fetch immediately in case DOM is already loaded
